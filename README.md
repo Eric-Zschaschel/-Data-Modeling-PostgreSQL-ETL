@@ -31,14 +31,15 @@ In this project, you’ll model user activity data for a music streaming app cal
     * Create the tables in PostgreSQL (create_tables.py)
     * Load the data from the song attributes and fill the song and artist table
     * Load the data from the logs and fill the time, user, songplay (fact) table
-
-
+    
+    
 * Data modeling: Star Schema with Facts (Transactional) and Dimensions (Master Data)
     * User axis
     * Song axis
     * Artist axis
     * Time axis
-
+   
+   
 * Note: The schema is not 3NF (the fact table duplicates information from the song and artist tables)
 
 
@@ -72,4 +73,6 @@ In this project, you’ll model user activity data for a music streaming app cal
     * python create_tables.py
     * python etl_fast.py
     
-* Open analytics.ipynb in jupyter notebook and run from top to bottom
+    
+* Open analytics.ipynb in jupyter notebook and run from top to bottom   
+OR just open ipynb in the git repository to see the results

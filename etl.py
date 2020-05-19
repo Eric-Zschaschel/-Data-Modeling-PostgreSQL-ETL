@@ -6,6 +6,7 @@ from sql_queries import *
 
 
 
+
 def process_song_file(cur, filepath):
     """inserts the json datasets into the songs and artists table"""
     # open song file

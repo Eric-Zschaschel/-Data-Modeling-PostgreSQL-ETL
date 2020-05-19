@@ -5,6 +5,11 @@ import psycopg2
 import pandas as pd
 from typing import Iterator, Dict, Any, Optional
 
+"""
+The official documentation for PostgreSQL features an entire section on Populating a Database. According to the documentation, the best way to load data into a database is using the copy command - this is much faster than the INSERT. Therefore I created this etl to do exactly that.
+
+"""
+
 # get all files matching extension from directory
 def get_files(filepath):
     """Returns list of the pathnames of the json files."""
@@ -22,9 +27,8 @@ def get_files(filepath):
 
 def clean_csv_value(value: Optional[Any]) -> str:
     r""" 
-    Empty values are transformed to \N. 
-    The string \N is the default string used by PostgreSQL to indicate 
-    NULL in COPY (this can be changed using the NULL option).
+    Empty values are transformed to \N. It is the default string used by PostgreSQL to indicate NULL 
+    in COPY (this can be changed using the NULL option).
     
     """
     if value is None:
@@ -227,7 +231,7 @@ def process_songplays(cur, conn, datapath: str) -> None:
     """
     After some A/B testing I figured out that a query for songid and artistid 
     inside the StringIterator x does not work as x will be used in copy_from.
-    
+
     My solution: Doing the filtering after copy_from.
     I also widened the songlist table for analytical purposes.
     
