@@ -12,7 +12,7 @@ The official documentation for PostgreSQL features an entire section on Populati
 
 # get all files matching extension from directory
 def get_files(filepath):
-    """Returns list of the pathnames of the json files."""
+    """Returns list of the pathnames of the json files. Copied from etl.py"""
     all_files = []
     # walk() generates the file names in a directory tree
     for root, dirs, files in os.walk(filepath):
@@ -29,6 +29,9 @@ def clean_csv_value(value: Optional[Any]) -> str:
     r""" 
     Empty values are transformed to \N. It is the default string used by PostgreSQL to indicate NULL 
     in COPY (this can be changed using the NULL option).
+    
+    this was influenced by:
+    https://hakibenita.com/fast-load-data-python-postgresql#copy-data-from-a-string-iterator
     
     """
     if value is None:
@@ -47,6 +50,7 @@ class StringIteratorIO(io.TextIOBase):
     thanks to the beer iterator the following class creates a file-like object that will act as a 
     buffer between the remote source and the COPY command. The buffer will consume 
     JSON via the iterator, clean and transform the data, and output clean CSV.
+    
     
     """
     def __init__(self, iter: Iterator[str]):
@@ -102,7 +106,12 @@ def json_gen(file_list: list) -> Iterator[Dict[str, Any]]:
                 yield data
             
 def process_songs(cur, conn, datapath: str) -> None:
-    """inserts json data into the songs table"""
+    """
+    inserts json data into the songs table. This code (and the following process_* functions) 
+    were also influenced by the idea of the beer iterator:
+    https://hakibenita.com/fast-load-data-python-postgresql#copy-data-from-a-string-iterator
+      
+    """
     file_list = get_files(datapath)
     jsonfile = json_gen(file_list)
     x = StringIteratorIO((
