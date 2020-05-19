@@ -12,6 +12,11 @@ def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)  
     
+    # insert artist record
+    cols = ['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']
+    artist_data = list(df[cols].values[0].flatten())
+    cur.execute(artist_table_insert, artist_data)
+    
     # insert song record
     #define columns for insert
     cols = ['song_id', 'title', 'artist_id', 'year', 'duration']
@@ -20,10 +25,7 @@ def process_song_file(cur, filepath):
     song_data = list(df[cols].values[0].flatten())
     cur.execute(song_table_insert, song_data)
     
-    # insert artist record
-    cols = ['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']
-    artist_data = list(df[cols].values[0].flatten())
-    cur.execute(artist_table_insert, artist_data)
+
 
 
 def process_log_file(cur, filepath):

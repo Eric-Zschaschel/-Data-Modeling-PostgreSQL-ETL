@@ -301,13 +301,13 @@ def main():
     cur = conn.cursor()
     
     filepath = os.path.normcase(os.getcwd()) + '/data/song_data'
-    process_songs(cur, conn, filepath)
     process_artists(cur, conn, filepath)
-    
+    process_songs(cur, conn, filepath)
+        
     filepath = os.path.normcase(os.getcwd()) + '/data/log_data'
-    process_time(cur, conn, filepath)
     process_users(cur, conn, filepath)
     process_songplays(cur, conn, filepath)
+    process_time(cur, conn, filepath)
     
     conn.close()
 
