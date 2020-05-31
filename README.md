@@ -19,7 +19,7 @@ In this project, you’ll model user activity data for a music streaming app cal
 * analytics - shows data visualization and analysis of the results
 * data folder - contains json files with datasets
 * create_tables - creates the database and tables accordint to sql_queries
-* etl_fast - additional content, I created a faster alternative to etl.py
+* etl_faster - additional content, I created a faster alternative to etl.py
 * sql_queries - lists all neccessary queries for CREATE, UPSERT, DROP
 * test: test environment for testing queries
 
@@ -69,7 +69,7 @@ In this project, you’ll model user activity data for a music streaming app cal
 ### How to run the faster Python scripts + analytics
 * Open Terminal
     * python create_tables.py
-    * python etl_fast.py
+    * python etl_faster.pyr
 
 
 * Open analytics.ipynb in jupyter notebook and run from top to bottom   
