@@ -69,7 +69,7 @@ In this project, you’ll model user activity data for a music streaming app cal
 ### How to run the faster Python scripts + analytics
 * Open Terminal
     * python create_tables.py
-    * python etl_faster.pyr
+    * python etl_faster.py
 
 
 * Open analytics.ipynb in jupyter notebook and run from top to bottom   
