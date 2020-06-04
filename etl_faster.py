@@ -126,7 +126,9 @@ def process_song_data(cur, conn, datapath: str) -> None:
         for i in jsonfile if i['song_id'] != ''
     ))
     cur.execute("""DELETE FROM staging_songs;""")
-    cur.copy_expert("COPY staging_songs FROM STDIN DELIMITER '|'", x)
+    cur.copy_expert("""COPY staging_songs
+        (song_id, title, artist_id, year, duration, name, location, latitude, longitude)
+        FROM STDIN DELIMITER '|'""", x)
     conn.commit()
 
 
